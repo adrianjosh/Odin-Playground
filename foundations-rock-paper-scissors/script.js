@@ -2,14 +2,16 @@ const choices = ["rock","paper","scissors"];
 let humanScore = 0;
 let computerScore = 0;
 
+let userInput;
+
 function getComputerChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
 function getHumanChoice() {
-    let userInput = prompt("Are you rock? paper? or scissors?");
     for(i = 0; i < choices.length; i++) { 
         if (userInput === choices[i]) {
+            console.log(`Picked ${userInput}`);
             return userInput.toLowerCase();
         }
     }
@@ -35,33 +37,34 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function playGame() {
-    humanScore = 0;
-    computerScore = 0;
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
 
-    let startMessage = confirm("Let's play Rock, Paper, Scissors?");
-    if (startMessage) {
-        alert("Alright here we go!");
-    } else {
-        alert("You cancelled the operation");
-        return;
-    }
-    
-    gameRunning = true;
-    while(gameRunning) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
 
-        playRound(humanSelection, computerSelection);
-
-        console.log(`Your score = ${humanScore}, Computer score = ${computerScore}`);
-        if(humanScore === 5) {
-            alert("You won the game!!");
-            gameRunning = false;
-        } else if (computerScore === 5) {
-            alert("You lost the game!!");
-            gameRunning = false;
-        }
+    console.log(`Your score = ${humanScore}, Computer score = ${computerScore}`);
+    if(humanScore >= 5) {
+        alert("You won the game!!");
+        resetGame();
+    } else if (computerScore >= 5) {
+        alert("You lost the game!!");
+        resetGame();
     }
 }
 
-playGame();
+function resetGame() {
+    alert("Play Again!");
+
+    humanScore = 0;
+    computerScore = 0;
+}
+
+let container = document.querySelector("#container");
+container.addEventListener("click", (MouseEvent) =>{
+    let target = MouseEvent.target;
+
+    userInput = target.id;
+
+    playGame();
+
+});
