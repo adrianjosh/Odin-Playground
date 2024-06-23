@@ -59,12 +59,24 @@ function resetGame() {
     computerScore = 0;
 }
 
-let container = document.querySelector("#container");
-container.addEventListener("click", (MouseEvent) =>{
-    let target = MouseEvent.target;
+let btn1 = document.querySelector("#button-container");
+btn1.addEventListener("click", (event) =>{
+    let target = event.target;
 
-    userInput = target.id;
-
-    playGame();
+    switch(target.id) {
+        case 'rock':
+            userInput = target.id;
+            playGame();
+            break;
+        case 'paper':
+            userInput = target.id;
+            playGame();
+            break;
+        case 'scissors':
+            userInput = target.id;
+            playGame();
+            break;
+    }
+    
 
 });

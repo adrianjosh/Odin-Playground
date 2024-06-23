@@ -4,13 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="script.js" defer></script>
 </head>
 <body>
-    <div id="container">
-        <button id="rock">ROCK</button>
-        <button id="paper">PAPER</button>
-        <button id="scissors">SCISSORS</button>
+    <div class="container">
+        <div class="header-container">
+            <h1>ROCK PAPER SCISSORS</h1>
+            <P>FIRST TO FIVE WINS</P>
+        </div>
+
+        <div class="game-ui-container">
+            <div class="score-ui-container">
+                <p>1 : 1</p>
+            </div>
+
+            <div class="choice-ui-container">
+                <img src="resources/Property 1=Papel.png" alt="Player's chosen move">
+                <img src="resources/Property 1=Pedra.png" alt="Computer's chosen move">
+            </div>
+            <div class="score-ui-container">
+                <h2>LET'S PLAY!</h2>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-message">
+                <p>PICK AN OPTION:</p>
+            </div>
+            <div id="button-container">
+                <input id="rock" type="image" src="resources/Pedra.png" />
+                <input id="paper" type="image" src="resources/Papel.png" />
+                <input id="scissors" type="image" src="resources/Tesoura.png" />
+            </div>
+        </div>
+        
+        
     </div>
 </body>
 </html>
