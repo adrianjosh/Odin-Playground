@@ -16,15 +16,16 @@
 
         <div class="game-ui-container">
             <div class="score-ui-container">
-                <p>1 : 1</p>
+                <p class="score">0 : 0</p>
             </div>
 
             <div class="choice-ui-container">
-                <img src="resources/Property 1=Papel.png" alt="Player's chosen move">
-                <img src="resources/Property 1=Pedra.png" alt="Computer's chosen move">
+                <img id="player-choice" src="resources/question-mark.svg" alt="Player's chosen move">
+                <h1>VS</h1>
+                <img id="computer-choice" src="resources/question-mark.svg" alt="Computer's chosen move">
             </div>
             <div class="score-ui-container">
-                <h2>LET'S PLAY!</h2>
+                <h2 class="announcer">LET'S PLAY!</h2>
             </div>
         </div>
         <div class="footer">
@@ -36,6 +37,7 @@
                 <input id="paper" type="image" src="resources/Papel.png" />
                 <input id="scissors" type="image" src="resources/Tesoura.png" />
             </div>
+            <button class="reset-button">RESET GAME</button>
         </div>
         
         
