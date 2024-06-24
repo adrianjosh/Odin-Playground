@@ -47,7 +47,6 @@ button {
   padding: 9px 20px 8px;
 }
 
-button:hover,
-button:focus {
+button:hover {
   opacity: .75;
 }
