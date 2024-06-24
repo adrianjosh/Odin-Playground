@@ -44,10 +44,6 @@ body {
     margin: 10px 0px;
 }
 
-.game-ui-container {
-
-}
-
 .score-ui-container {
     display: flex;
     justify-content: center;
