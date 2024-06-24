@@ -9,9 +9,8 @@ function createDiv(size = 16) {
         for (let j = 0; j < size; j++) {
             let row = document.createElement("div");
             row.classList.add("row");
-            row.style.border = "1px solid black";
             row.addEventListener("mouseover", () => {
-                row.setAttribute("style", "background-color: black; border: 1px solid black");
+                row.setAttribute("style", "background-color: black;");
             });
 
             column.appendChild(row);
@@ -22,7 +21,7 @@ function createDiv(size = 16) {
 
 function resizeCanvas() {
     let userInput = prompt("Enter the desired grid size between 1 - 100");
-    
+
     while(true){
         if(userInput < 1 || userInput > 100) {
             userInput = prompt("Enter the desired grid size between 1 - 100");
