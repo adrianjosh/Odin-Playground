@@ -20,16 +20,36 @@ function createDiv(size = 16) {
     }
 }
 
+function resizeCanvas() {
+    let userInput = prompt("Enter the desired grid size between 1 - 100");
+    
+    while(true){
+        if(userInput < 1 || userInput > 100) {
+            userInput = prompt("Enter the desired grid size between 1 - 100");
+        } else {
+            break;
+        }
+    }
+    removeGrid();
+    createDiv(userInput);
+}
+
 function clearCanvas() {
-    let rows = document.getElementsByClassName("row");
+    const rows = document.getElementsByClassName("row");
     for(let row of rows) {
         row.style.backgroundColor = "White";
     }
 }
 
-btnClear.addEventListener("click", clearCanvas);
+function removeGrid() {
+    while(container.firstChild) {
+        container.removeChild(container.lastChild);
+    }
+}
 
 //Runs when the DOM is ready
 window.addEventListener("DOMContentLoaded", function() {
     createDiv();
+    btnClear.addEventListener("click", clearCanvas);
+    btnResize.addEventListener("click", resizeCanvas);
 }, false);
