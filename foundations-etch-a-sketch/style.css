@@ -2,12 +2,14 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
 }
 
 body {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: column;
     min-height: 100vh;
     
 }
@@ -30,4 +32,22 @@ body {
 
 .row{
     flex: 1;
+}
+
+button {
+  background-color: #222;
+  border-radius: 4px;
+  border-style: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  outline: none;
+  padding: 9px 20px 8px;
+}
+
+button:hover,
+button:focus {
+  opacity: .75;
 }
