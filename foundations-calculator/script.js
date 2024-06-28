@@ -1,6 +1,6 @@
-let firstNum = parseInt(prompt(`Enter the first number`,0));
-let operator = prompt(`Enter the operator (+, -, *, /)`,`+`);
-let secondNum = parseInt(prompt(`Enter the second number`,0));
+//let firstNum = parseInt(prompt(`Enter the first number`,0));
+//let operator = prompt(`Enter the operator (+, -, *, /)`,`+`);
+//let secondNum = parseInt(prompt(`Enter the second number`,0));
 
 
 function add(sum) {
