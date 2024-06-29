@@ -2,6 +2,7 @@ const display = document.querySelector(".display h1");
 const clearBtn = document.querySelector(".clear");
 const equals = document.querySelector(".equals");
 const decimal = document.querySelector(".decimal");
+const sign = document.querySelector(".sign");
 const operands = document.querySelectorAll(".operand")
 const operators = document.querySelectorAll(".operator");
 
@@ -9,34 +10,44 @@ const operators = document.querySelectorAll(".operator");
 let firstNum = null;
 let operator = null;
 let secondNum = null;
+let tempDisplayValue = null;
 let displayValue = "0";
 
 operands.forEach(button => {
     button.addEventListener("click", () => {
         if (displayValue === "0") {
             displayValue = button.value;
-            if (operator === null) {
-                firstNum = displayValue;
-            } else {
-                secondNum = displayValue;
-            }
         } else {
             displayValue += button.value;
-            if (operator === null) {
-                firstNum = displayValue;
-            } else {
-                secondNum = displayValue;
-            }
         }
+        checkNumberOrder();
         updateDisplay(displayValue);
     })
 });
 
 decimal.addEventListener("click", () => {
+    if (tempDisplayValue !== null) {
+        displayValue = tempDisplayValue;
+        tempDisplayValue = null;
+    }
+    
     if (!displayValue.includes(".")) {
         displayValue += decimal.value;
         updateDisplay(displayValue);
     }
+});
+
+sign.addEventListener("click", () => {
+    if (tempDisplayValue !== null) {
+        displayValue = tempDisplayValue;
+        tempDisplayValue = null;
+    }
+    if (displayValue !== "0") {
+        displayValue *= (-1);
+        displayValue = `${displayValue}`;
+    }
+    checkNumberOrder();
+    updateDisplay(displayValue);
 });
 
 operators.forEach(button => {
@@ -50,7 +61,7 @@ operators.forEach(button => {
         if (operator !== null) {
             operator = button.value;
             return;
-        } else if (operator === null) {
+        } else if (operator === null && firstNum !== null) {
             operator = button.value;
             updateDisplay("0");
         }
@@ -61,6 +72,7 @@ clearBtn.addEventListener("click", () => {
     firstNum = null;
     operator = null;
     secondNum = null;
+    tempDisplayValue = null;
     updateDisplay("0");
 });
 
@@ -71,14 +83,22 @@ equals.addEventListener("click", () => {
     }
 });
 
+function checkNumberOrder() {
+    if (operator === null) {
+        firstNum = displayValue;
+    } else {
+        secondNum = displayValue;
+    }
+}
+
 function calculate() {
     firstNum = parseFloat(firstNum);
     secondNum = parseFloat(secondNum);
-    let finalAns = operate();
+    let finalAns = `${operate()}`;
     updateDisplay(finalAns);
+    tempDisplayValue = finalAns;
     displayValue = "0";
     secondNum = null;
-    //operator = null;
 }
 
 function updateDisplay(value) {
