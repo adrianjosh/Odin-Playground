@@ -1,8 +1,10 @@
 const display = document.querySelector(".display h1");
 const clearBtn = document.querySelector(".clear");
+const equals = document.querySelector(".equals");
+const decimal = document.querySelector(".decimal");
 const operands = document.querySelectorAll(".operand")
 const operators = document.querySelectorAll(".operator");
-const equals = document.querySelector(".equals");
+
 
 let firstNum = null;
 let operator = null;
@@ -12,6 +14,13 @@ let displayValue = "0";
 operands.forEach(button => {
     button.addEventListener("click", () => {
         
+        decimal.addEventListener("click", () => {
+            if (displayValue !== "0" && !displayValue.includes(".")) {
+                displayValue += decimal.value;
+                updateDisplay(displayValue);
+            }
+        });
+
         if (displayValue === "0") {
             displayValue = button.value;
             if (operator === null) {
