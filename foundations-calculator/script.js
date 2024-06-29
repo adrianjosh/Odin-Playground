@@ -13,14 +13,6 @@ let displayValue = "0";
 
 operands.forEach(button => {
     button.addEventListener("click", () => {
-        
-        decimal.addEventListener("click", () => {
-            if (displayValue !== "0" && !displayValue.includes(".")) {
-                displayValue += decimal.value;
-                updateDisplay(displayValue);
-            }
-        });
-
         if (displayValue === "0") {
             displayValue = button.value;
             if (operator === null) {
@@ -38,6 +30,13 @@ operands.forEach(button => {
         }
         updateDisplay(displayValue);
     })
+});
+
+decimal.addEventListener("click", () => {
+    if (!displayValue.includes(".")) {
+        displayValue += decimal.value;
+        updateDisplay(displayValue);
+    }
 });
 
 operators.forEach(button => {
