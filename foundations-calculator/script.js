@@ -3,6 +3,7 @@ const clearBtn = document.querySelector(".clear");
 const equals = document.querySelector(".equals");
 const decimal = document.querySelector(".decimal");
 const sign = document.querySelector(".sign");
+const percent = document.querySelector(".percent");
 const operands = document.querySelectorAll(".operand")
 const operators = document.querySelectorAll(".operator");
 
@@ -23,6 +24,32 @@ operands.forEach(button => {
         checkNumberOrder();
         updateDisplay(displayValue);
     })
+});
+
+operators.forEach(button => {
+    button.addEventListener("click", () => {
+        if ((firstNum !== null && secondNum !== null) && operator !== null) {
+            calculate();
+            operator = button.value;;
+            return;
+        }
+
+        if (operator !== null) {
+            operator = button.value;
+            return;
+        } else if (operator === null && firstNum !== null) {
+            operator = button.value;
+            updateDisplay("0");
+        }
+    })
+});
+
+clearBtn.addEventListener("click", () => {
+    firstNum = null;
+    operator = null;
+    secondNum = null;
+    tempDisplayValue = null;
+    updateDisplay("0");
 });
 
 decimal.addEventListener("click", () => {
@@ -50,30 +77,17 @@ sign.addEventListener("click", () => {
     updateDisplay(displayValue);
 });
 
-operators.forEach(button => {
-    button.addEventListener("click", () => {
-        if ((firstNum !== null && secondNum !== null) && operator !== null) {
-            calculate();
-            operator = button.value;;
-            return;
-        }
-
-        if (operator !== null) {
-            operator = button.value;
-            return;
-        } else if (operator === null && firstNum !== null) {
-            operator = button.value;
-            updateDisplay("0");
-        }
-    })
-});
-
-clearBtn.addEventListener("click", () => {
-    firstNum = null;
-    operator = null;
-    secondNum = null;
-    tempDisplayValue = null;
-    updateDisplay("0");
+percent.addEventListener("click", () => {
+    if (tempDisplayValue !== null) {
+        displayValue = tempDisplayValue;
+        tempDisplayValue = null;
+    }
+    
+    if (displayValue !== "0" && !displayValue.includes(".")) {
+        displayValue = `${(displayValue / 100)}`;
+        firstNum = displayValue;
+        updateDisplay(displayValue);
+    }
 });
 
 equals.addEventListener("click", () => {
