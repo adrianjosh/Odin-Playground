@@ -12,6 +12,10 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+.project-name {
+    font-size: 60px;
+    margin-bottom: 50px;
+}
 
 .container {
     width: 500px;
