@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/modern-normalize/modern-normalize.css">
+    <style>
+        body {
+            /* Center the form on the page */
+            text-align: center;
+        }
+
+        form {
+            display: inline-block;
+            /* Form outline */
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+            margin-top: 1em;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        form li + li {
+            
+        }
+
+        label {
+            /* Uniform size & alignment */
+            display: inline-block;
+            min-width: 180px;
+            text-align: right;
+        }
+
+        input,
+        textarea {
+            /* To make sure that all text fields have the same font settings
+                By default, textareas have a monospace font */
+            font: 1em sans-serif;
+            /* Uniform text field size */
+            width: 300px;
+            box-sizing: border-box;
+            /* Match form field borders */
+            border: 1px solid #999;
+        }
+
+        input:focus,
+        textarea:focus {
+            /* Additional highlight for focused elements */
+            border-color: #000;
+        }
+
+        textarea {
+            /* Align multiline text fields with their labels */
+            vertical-align: top;
+            /* Provide space to type some text */
+            height: 5em;
+        }
+
+        .button {
+            /* Align buttons with the text fields */
+            padding-left: 90px; /* same size as the label elements */
+        }
+
+        button {
+            /* This extra margin represent roughly the same space as the space
+                between the labels and their text fields */
+            margin-left: 0.5em;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="/my-handling-form-page" method="post">
+        <ul>
+          <li>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="user_name" placeholder="aaaa" />
+          </li>
+          <li>
+            <label for="mail">Email:</label>
+            <input type="email" id="mail" name="user_email" />
+          </li>
+          <li>
+            <label for="msg">Message:</label>
+            <textarea id="msg" name="user_message" placeholder="aaa"></textarea>
+          </li>
+          <li>
+              <label for="user_email">Email Address:</label>
+              <input type="email" id="user_email" name="email" placeholder="you@example.com">
+          </li>
+          <li>
+              <label for="user_password">Password:</label>
+              <input type="password" id="user_password" name="password">
+          </li>
+          <li>
+              <label for="amount">Amount:</label>
+              <input type="number" id="amount" name="amount" value="1">
+          </li>
+          <li>
+              <label for="dob">Date of Birth:</label>
+              <input type="date" id="dob" name="dob">
+          </li>
+
+          <li>
+              <select name="fashion">
+                <optgroup label="Clothing">
+                  <option value="t_shirt">T-Shirts</option>
+                  <option value="sweater">Sweaters</option>
+                  <option value="coats">Coats</option>
+                </optgroup>
+                <optgroup label="Foot Wear">
+                  <option value="sneakers">Sneakers</option>
+                  <option value="boots">Boots</option>
+                  <option value="sandals">Sandals</option>
+                </optgroup>
+              </select>
+          </li>
+
+          <li>
+              <h1>Ticket Type</h1>
+              <div>
+                <input type="radio" id="child" name="ticket_type" value="child">
+                <label for="child">Child</label>
+              </div>
+              
+              <div>
+                <input type="radio" id="adult" name="ticket_type" value="adult">
+                <label for="adult">Adult</label>
+              </div>
+              
+              <div>
+                <input type="radio" id="senior" name="ticket_type" value="senior">
+                <label for="senior">Senior</label>
+              </div>
+          </li>
+
+          <li>
+              <h1>Pizza Toppings</h1>
+              <div>
+                <input type="checkbox" id="sausage" name="topping" value="sausage">
+                <label for="sausage">Sausage</label>
+              </div>
+              
+              <div>
+                <input type="checkbox" id="onions" name="topping" value="onions">
+                <label for="onions">Onions</label>
+              </div>
+              
+              <div>
+                <input type="checkbox" id="pepperoni" name="topping" value="pepperoni">
+                <label for="pepperoni">Pepperoni</label>
+              </div>
+              
+              <div>
+                <input type="checkbox" id="mushrooms" name="topping" value="mushrooms">
+                <label for="mushrooms">Mushrooms</label>
+              </div>
+          </li>
+          
+          
+          <li class="button">
+            <button type="submit">Send your message</button>
+          </li>
+        </ul>
+      </form>
+</body>
+</html>
