@@ -49,12 +49,6 @@ body {
     flex: 4 1 auto;
 }
 
-
-
-
-
-
-
 @media only screen and (min-width: 700px) {
     body {
         flex-direction: row;
