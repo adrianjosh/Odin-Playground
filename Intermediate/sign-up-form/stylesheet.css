@@ -6,3 +6,74 @@
     font-style: normal;
 
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.logo-header {
+    flex: 1 1 auto;
+    position: relative;
+    background: url(images/halie-west-unsplash.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.logo-container {
+    display: flex;
+    position: absolute;
+    top: 25%;
+    height: 50%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-container img {
+    height: 80%;
+}
+
+.logo-container h1 {
+    font:
+      3rem "norse-bold",
+      sans-serif;
+    color: white;
+}
+
+.logo-header + main {
+    flex: 4 1 auto;
+}
+
+
+
+
+
+
+
+@media only screen and (min-width: 700px) {
+    body {
+        flex-direction: row;
+    }
+
+    .logo-header {
+        width: 0;
+        height: 100vh;
+    }
+
+    .logo-container{
+        height: 15%;
+    }
+
+    .logo-container h1 {
+        font-size: 5rem;
+    }
+
+    .logo-header + main {
+        flex: 2 1 auto;
+    }
+}
