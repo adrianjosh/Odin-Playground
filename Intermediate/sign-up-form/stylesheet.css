@@ -99,12 +99,26 @@ main > div h1{
 }
 
 .form-row input {
+    outline: none;
     background-color: #FFFFFF;
-    border: 1px solid #D6D9DC;
-    border-radius: 3px;
+    border: 1px solid #E5E7EB;
+    border-radius: 5px;
     width: 100%;
     padding: 7px;
     font-size: 14px;
+}
+
+input:invalid {
+    border: 1px solid red;
+}
+
+.form-row input:focus {
+    border: 1px solid blue;
+    box-shadow: 0 6px 6px -2px rgba(0, 0, 0, 0.2); 
+}
+
+span[aria-label="required"]{
+    color: red;
 }
 
 .button-container button {
