@@ -9,12 +9,20 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    font-family: Roboto,
+                system-ui,
+                'Segoe UI',
+                Helvetica,
+                Arial,
+                sans-serif,
+                'Apple Color Emoji',
+                'Segoe UI Emoji';
 }
 
 .logo-header {
     flex: 1 1 0;
+    min-height: 120px;
     position: relative;
     background: url(images/halie-west-unsplash.jpg) no-repeat center center;
     -webkit-background-size: cover;
@@ -44,22 +52,25 @@ body {
     color: white;
 }
 
-.logo-header + main {
+main {
     flex: 4 1 0;
     background-color: #f9fafc;
-}
-
-main {
     display: flex;
     flex-direction: column;
 }
 
-main > div {
-    padding: 20px;
+main > div:first-child {
+    padding: 40px 40px 0 40px;
 }
 
 main > div h1{
-    font-size: 0.8rem;
+    font-size: 1.1rem;
+    max-inline-size: max(40ch,50ch);
+}
+
+.form-container h2 {
+    font-size: 1.1rem;
+    padding: 20px 40px 0 40px;
 }
 
 .form-container {
@@ -71,10 +82,9 @@ main > div h1{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    
 }
 
-.form-container .form-row {
+.form-row {
     margin-bottom: 40px;
     display: flex;
     justify-content: flex-start;
@@ -83,7 +93,12 @@ main > div h1{
     padding: 0 40px;
 }
 
-.form-container .form-row input {
+.form-row label {
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.form-row input {
     background-color: #FFFFFF;
     border: 1px solid #D6D9DC;
     border-radius: 3px;
@@ -91,55 +106,61 @@ main > div h1{
     padding: 7px;
     font-size: 14px;
 }
-  
-.form-row label {
-    margin-bottom: 15px;
-}
 
-.form-row button {
+.button-container button {
     font-size: 16px;
     font-weight: bold;
   
     color: #FFFFFF;
-    background-color: #5995DA;
+    background-color: rgb(89, 109, 72);
   
     border: none;
-    border-radius: 3px;
+    border-radius: 8px;
   
-    padding: 10px 40px;
+    padding: 13px 60px;
     cursor: pointer;
 }
   
-.form-row button:hover {
-    background-color: #76AEED;
+.button-container button:hover {
+    background-color: rgb(124, 150, 101);
 }
   
-.form-row button:active {
-    background-color: #407FC7;
+.button-container button:active {
+    background-color: rgb(82, 102, 64)
 }
+
+.button-container {
+    padding-top: 40px;
+}
+
+.button-container, .footer {
+    text-align: center;
+}
+
+.footer p, .footer a {
+    font-weight: 500;
+}
+
+.footer a {
+    color: rgb(89, 109, 72);
+}
+
 
 @media only screen and (min-width: 700px) {
     body {
         flex-direction: row;
     }
 
-    .logo-header {
-        height: 100vh;
-    }
-
     .logo-container{
         height: 130px;
     }
 
-    .logo-header + main {
-        flex: 2 1 0;
-    }
-
     main {
+        flex: 2 1 0;
         justify-content: center;
     }
 
-    main > div h1{
+    main > div h1, .form-container h2{
         font-size: 1.5rem;
     }
 
@@ -150,6 +171,18 @@ main > div h1{
 
     .form-container .form-row {
         width: min(50%,350px);
+    }
+
+    .button-container {
+        padding: 40px 0 0 40px;
+    }
+    
+    .footer {
+        padding-left: 40px;
+    }
+
+    .button-container, .footer {
+        text-align: left;
     }
     
 }
