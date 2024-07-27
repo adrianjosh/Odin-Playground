@@ -22,7 +22,7 @@ body {
 
 .logo-header {
     flex: 1 1 0;
-    min-height: 120px;
+    min-height: 150px;
     position: relative;
     background: url(images/halie-west-unsplash.jpg) no-repeat center center;
     -webkit-background-size: cover;
@@ -34,7 +34,7 @@ body {
 .logo-container {
     display: flex;
     position: absolute;
-    top: 25%;
+    top: 15%;
     height: 50%;
     width: 100%;
     background: rgba(0, 0, 0, 0.4);
@@ -159,6 +159,22 @@ span[aria-label="required"]{
     color: rgb(89, 109, 72);
 }
 
+.logo-container + div:last-child {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
+
+.logo-container + div:last-child p {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.logo-container + div:last-child p, 
+.logo-container + div:last-child p a {
+    color: white;
+}
 
 @media only screen and (min-width: 700px) {
     body {
@@ -167,6 +183,7 @@ span[aria-label="required"]{
 
     .logo-container{
         height: 130px;
+        top: 25%;
     }
 
     main {
@@ -198,5 +215,8 @@ span[aria-label="required"]{
     .button-container, .footer {
         text-align: left;
     }
-    
+
+    .logo-container + div:last-child p {
+        font-size: 1rem;
+    }
 }
