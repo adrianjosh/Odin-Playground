@@ -3,8 +3,21 @@ html {
     height: 100%;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    
+    font-family: Roboto,
+                system-ui,
+                'Segoe UI',
+                Helvetica,
+                Arial,
+                sans-serif,
+                'Apple Color Emoji',
+                'Segoe UI Emoji';
     display: grid;
     grid-template-columns: 300px 4fr;
     grid-template-rows: 1fr 4fr;
@@ -15,5 +28,46 @@ body > * {
 }
 
 nav {
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: 30px;
+    padding: 0 2rem;
+    background-color: #1892d3;
     grid-row: 1 / 4 ;
+}
+
+nav, ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+svg {
+    fill: white;
+}
+
+.logo svg {
+    width: 50px;
+    height: 50px;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+}
+
+ul li svg {
+    width: 25px;
+    height: 25px;
+}
+
+ul li a {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
+}
+
+.logo, ul li a{
+    display: flex;
+    width: fit-content;
+    place-items: center;
+    gap: 15px;
 }
