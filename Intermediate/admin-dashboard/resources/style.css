@@ -3,6 +3,7 @@ html {
     height: 100%;
 }
 
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -23,24 +24,20 @@ body {
     grid-template-rows: 1fr 4fr;
 }
 
-body > * {
-    border: 1px solid black;
-}
-
 nav {
     display: grid;
     grid-auto-rows: min-content;
     gap: 30px;
     padding: 0 2rem;
     background-color: #1892d3;
-    grid-row: 1 / 4 ;
+    grid-row: 1 / 3 ;
 }
 
 nav, ul li a {
     color: white;
 }
 
-svg {
+nav svg {
     fill: white;
 }
 
@@ -78,4 +75,104 @@ ul li a {
     width: fit-content;
     place-items: center;
     gap: 15px;
+}
+
+header svg {
+    width: 25px;
+    height: 25px;
+}
+
+header {
+    grid-row: 1 / 2;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 80px;
+    padding: 1rem 3rem;
+    box-shadow: 0 6px 6px -2px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.search {
+    display: flex;
+}
+
+.search label {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    place-items: center;
+}
+
+.search label input {
+    width: 80%;
+    border: none;
+    border-radius: 25px;
+    padding: 8px;
+    background-color: #e1e8ef;
+}
+header div:nth-child(1) {
+    grid-column: 1 / 4;
+}
+
+header div:nth-child(2) {
+    grid-column : 6 / 6 ;
+    display: flex;
+    place-items: center;
+    gap: 45px;
+}
+
+header div:nth-child(2) img {
+    height: 50px;
+}
+
+header div:nth-child(3) {
+    grid-column: 1 / 4;
+    display: flex;
+    place-items: flex-end;
+    gap: 30px;
+}
+
+header div:nth-child(3) h2 {
+    place-self: flex-end;
+}
+
+header div:nth-child(3) img {
+    height: 80px;
+}
+
+.greetings {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.greetings-small {
+    font-size: 1rem;
+}
+
+header div:nth-child(4) {
+    grid-column: 5 / 7;
+    display: flex;
+    place-items: flex-end;
+    justify-content: flex-end;
+    gap: 30px;
+}
+
+.buttons {
+    background-color: #009ace;
+    width: 130px;
+    height: 40px;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    padding: 8px 32px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.buttons:hover {
+    background-color: #00baf8;
+    color: white;
+}
+
+main {
+    background-color: #e1e8f0;
 }
