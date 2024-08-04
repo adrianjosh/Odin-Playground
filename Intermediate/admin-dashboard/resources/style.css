@@ -1,0 +1,19 @@
+body,
+html {
+    height: 100%;
+}
+
+body {
+    
+    display: grid;
+    grid-template-columns: 300px 4fr;
+    grid-template-rows: 1fr 4fr;
+}
+
+body > * {
+    border: 1px solid black;
+}
+
+nav {
+    grid-row: 1 / 4 ;
+}
