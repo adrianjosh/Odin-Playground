@@ -1,13 +1,19 @@
 html {
     font-family: sans-serif;
-  }
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+}
   
 table {
     border-collapse: collapse;
     border: 2px solid rgb(200,200,200);
     letter-spacing: 1px;
     font-size: 0.8rem;
-    width: 100%;
+    width: 50%;
 }
   
 td, th {
