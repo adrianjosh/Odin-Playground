@@ -6,14 +6,15 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     place-items: center;
+    gap: 20px;
 }
   
 table {
+    display: flex;
     border-collapse: collapse;
     border: 2px solid rgb(200,200,200);
     letter-spacing: 1px;
     font-size: 0.8rem;
-    width: 50%;
 }
   
 td, th {
