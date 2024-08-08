@@ -3,20 +3,22 @@ html {
 }
 
 body {
-    display: grid;
-    grid-template-columns: 1fr;
-    place-items: center;
+    display: flex;
     margin: 0;
     padding: 0;
-    gap: 20px;
+    height: 100vh;
 }
   
 table {
-    width: 100%;
     border-collapse: collapse;
     border: 2px solid rgb(200,200,200);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     letter-spacing: 1px;
     font-size: 0.8rem;
+    max-height: 0;
+    width: min(1000px, 100%);
+    align-self: center;
 }
   
 td, th {
@@ -44,12 +46,82 @@ caption {
     padding: 10px;
 }
 
-
-#table-container {
-    max-width: 600px;
+.container{
+    display: grid;
+    grid-template-columns: minmax(250px, 1fr) minmax(700px, 4fr);
     margin: 20px;
+    padding: 20px;
+    gap: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 100%;
+    
+}
+
+.table-container{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+}
+
+
+input[type="text"], input[type="number"], select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.status-btn {
+    background-color: #db1515;
+    color: #fff;
+    cursor: pointer;
+}
+
+.status-btn.read {
+    background-color: #1cdd15;
+}
+
+.status-btn:hover {
+    background-color: #388e3c;
+}
+.status-btn.not-read:hover {
+    background-color: #8f0a0a;
+}
+
+.status-btn,
+.delete-btn {
+    width: 100px;
 }

@@ -1,89 +1,95 @@
 const myLibrary = [];
-const addBtn = document.querySelector('#add-book');
 const libraryTableBody = document.querySelector('table tbody');
+const bookForm = document.getElementById('book-form');
 
-addBtn.addEventListener('click', addBookToLibrary);
-
-function Book(title, author, pages, read) {
+function Book(title, author, pages, readStatus) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
-    this.id = generateUniqueId();
+    this.readStatus = readStatus;
+    this.id = this.generateUniqueId();
 }
 
-function addBookToLibrary() {
-    const title = prompt("What is the name of the book? ");
-    const author = prompt("What is the name of the author? ");
-    const pages = prompt("How many pages are there in the book? ");
-    const read = askYesNoQuestion('Did you read it already?');
-  
-    const book = new Book(title, author, pages, read);
-    myLibrary.push(book);
-    displayBooksToTable(myLibrary);
-}
+Book.prototype.generateUniqueId = function() {
+    return '_' + Math.random().toString(36).substring(2, 9);
+};
 
-function askYesNoQuestion(question) {
-    let answer = prompt(question + " (yes or no)");
-    if (answer.toLowerCase() === "yes") {
-        return true;
-    } else if (answer.toLowerCase() === "no") {
-        return false;
-    } else {
-    // If the user enters an invalid response, prompt again
-        alert("Please enter 'yes' or 'no'");
-        return askYesNoQuestion(question);
+Book.prototype.toggleReadStatus = function() {
+    this.readStatus = this.readStatus === "Read" ? "Not Read" : "Read";
+};
+
+bookForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const title = document.getElementById('title').value.trim();
+    const author = document.getElementById('author').value.trim();
+    const pages = document.getElementById('pages').value.trim();
+    const readStatus = document.getElementById('readStatus').value;
+
+    if (title && author && pages) {
+        addBookToLibrary(title, author, pages, readStatus);
+        clearForm();
+        displayBooksToTable();
     }
+});
+
+function clearForm() {
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('pages').value = '';
+    document.getElementById('readStatus').value = 'Not Read';
 }
 
+function addBookToLibrary(title, author, pages, readStatus) {
+    const book = new Book(title, author, pages, readStatus);
+    myLibrary.push(book);
+}
 
-function displayBooksToTable(data) {
+function displayBooksToTable() {
     libraryTableBody.innerHTML = '';
-    data.forEach(item => {
+    myLibrary.forEach(book => {
         let tr = document.createElement('tr');
 
         let title = document.createElement('td');
         let author = document.createElement('td');
         let pages = document.createElement('td');
-        let read = document.createElement('td');
-        let actionCell = document.createElement('td');
+        let deleteCell = document.createElement('td');
+        let statusCell = document.createElement('td');
         let deleteBtn = document.createElement('button');
+        let statusBtn = document.createElement('button');
 
-        title.textContent = item.title;
-        author.textContent = item.author;
-        pages.textContent = item.pages;
-        read.textContent = item.read;
+        title.textContent = book.title;
+        author.textContent = book.author;
+        pages.textContent = book.pages;
 
         deleteBtn.textContent = 'Delete';
         deleteBtn.classList.add('delete-btn');
+        deleteBtn.setAttribute('data-id', book.id);
+        deleteBtn.addEventListener('click', function() {
+            deleteBookById(book.id);
+            displayBooksToTable();
+        });
 
-        actionCell.appendChild(deleteBtn);
+        statusBtn.textContent = book.readStatus;
+        statusBtn.classList.add('status-btn', book.readStatus === 'Read' ? 'read' : 'not-read');
+        statusBtn.addEventListener('click', function() {
+            book.toggleReadStatus();
+            displayBooksToTable();
+        });
+        
         tr.appendChild(title);
         tr.appendChild(author);
         tr.appendChild(pages);
-        tr.appendChild(read);
-        tr.appendChild(actionCell);
+
+        statusCell.appendChild(statusBtn);
+        deleteCell.appendChild(deleteBtn);
+        tr.appendChild(statusCell);
+        tr.appendChild(deleteCell);
+        
         libraryTableBody.appendChild(tr);
     });
     
 }
-
-
-function generateUniqueId() {
-    return '_' + Math.random().toString(36).substring(2, 9);
-}
-
-// function displayBooksToTable(data) {
-//     let table = '<table>';
-//     table += '<tr><th>Title</th><th>Author</th><th>Pages</th><th>Read</th></tr>';  
-//     data.forEach(item => {
-        
-//         table += `<tr><td>${item.title}</td><td>${item.author}</td><td>${item.pages}</td><td>${item.read}</td><td><button id="remove" value="${item.id}">Remove</button></td></tr>`;
-//     });
-//     table += '</table>';
-
-//     return table;
-// }
 
 function findBookIndexById(id) {
     return myLibrary.findIndex(book => book.id === id);
@@ -99,8 +105,6 @@ function deleteBookById(id) {
     }
 }
 
-// addBookToLibrary();
-// console.log(myLibrary);
 
-// addBookToLibrary();
-// console.log(myLibrary);
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 310, 'Not Read');
+displayBooksToTable();

@@ -8,24 +8,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Pages</th>
-                    <th>Read</th>
-                    <th colspan="2">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
-        
+    <div class="container">
+        <form id="book-form">
+            <h1>Add a new book</h1>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required>
+    
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author">
+    
+            <label for="pages">Pages</label>
+            <input type="number" id="pages" name="pages" min="1">
+    
+            <select name="status" id="readStatus" required>
+                <option value="Read">Read</option>
+                <option value="Not Read">Not Read</option>
+            </select>
+    
+            <button type="submit">Add</button>
+        </form>
+
+        <div class="table-container">
+            <h1>Library</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                        <th colspan="2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <button id="add-book">Add a new Book</button>
+    
+    
+    
     <script src="script.js" defer></script>
 </body>
 </html>
