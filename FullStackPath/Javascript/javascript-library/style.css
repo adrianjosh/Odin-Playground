@@ -6,11 +6,13 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     place-items: center;
+    margin: 0;
+    padding: 0;
     gap: 20px;
 }
   
 table {
-    display: flex;
+    width: 100%;
     border-collapse: collapse;
     border: 2px solid rgb(200,200,200);
     letter-spacing: 1px;
@@ -40,4 +42,14 @@ tr:nth-child(odd) td {
   
 caption {
     padding: 10px;
+}
+
+
+#table-container {
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }

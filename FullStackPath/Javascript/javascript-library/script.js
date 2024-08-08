@@ -1,12 +1,15 @@
 const myLibrary = [];
-const tableContainer = document.querySelector('#table-container');
-const addBtn = document.querySelector('#add-book')
+const addBtn = document.querySelector('#add-book');
+const libraryTableBody = document.querySelector('table tbody');
+
+addBtn.addEventListener('click', addBookToLibrary);
 
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.id = generateUniqueId();
 }
 
 function addBookToLibrary() {
@@ -17,7 +20,7 @@ function addBookToLibrary() {
   
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
-    tableContainer.innerHTML = displayBooksToTable(myLibrary);
+    displayBooksToTable(myLibrary);
 }
 
 function askYesNoQuestion(question) {
@@ -33,17 +36,69 @@ function askYesNoQuestion(question) {
     }
 }
 
+
 function displayBooksToTable(data) {
-    let table = '<table>';
-    table += '<tr><th>Title</th><th>Author</th><th>Pages</th><th>Read</th></tr>';  
+    libraryTableBody.innerHTML = '';
     data.forEach(item => {
-        table += `<tr><td>${item.title}</td><td>${item.author}</td><td>${item.pages}</td><td>${item.read}</td></tr>`;
+        let tr = document.createElement('tr');
+
+        let title = document.createElement('td');
+        let author = document.createElement('td');
+        let pages = document.createElement('td');
+        let read = document.createElement('td');
+        let actionCell = document.createElement('td');
+        let deleteBtn = document.createElement('button');
+
+        title.textContent = item.title;
+        author.textContent = item.author;
+        pages.textContent = item.pages;
+        read.textContent = item.read;
+
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.classList.add('delete-btn');
+
+        actionCell.appendChild(deleteBtn);
+        tr.appendChild(title);
+        tr.appendChild(author);
+        tr.appendChild(pages);
+        tr.appendChild(read);
+        tr.appendChild(actionCell);
+        libraryTableBody.appendChild(tr);
     });
-    table += '</table>';
-    return table;
+    
 }
 
-addBtn.addEventListener('click', addBookToLibrary);
+
+function generateUniqueId() {
+    return '_' + Math.random().toString(36).substring(2, 9);
+}
+
+// function displayBooksToTable(data) {
+//     let table = '<table>';
+//     table += '<tr><th>Title</th><th>Author</th><th>Pages</th><th>Read</th></tr>';  
+//     data.forEach(item => {
+        
+//         table += `<tr><td>${item.title}</td><td>${item.author}</td><td>${item.pages}</td><td>${item.read}</td><td><button id="remove" value="${item.id}">Remove</button></td></tr>`;
+//     });
+//     table += '</table>';
+
+//     return table;
+// }
+
+function findBookIndexById(id) {
+    return myLibrary.findIndex(book => book.id === id);
+}
+
+function deleteBookById(id) {
+    const index = findBookIndexById(id);
+    if (index !== -1) {
+        myLibrary.splice(index, 1);
+        console.log(`Book with ID ${id} deleted.`);
+    } else {
+        console.log(`Book with ID ${id} not found.`);
+    }
+}
+
 // addBookToLibrary();
 // console.log(myLibrary);
 
