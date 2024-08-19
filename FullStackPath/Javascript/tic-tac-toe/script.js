@@ -108,6 +108,7 @@ const GameController = (function() {
     function init() {
         Gameboard.resetBoard();
         currentPlayer = participants[0];
+        commentator(`${currentPlayer.name}'s Turn`);
         gameState = 'playing';
     }
 
@@ -124,14 +125,22 @@ const GameController = (function() {
             const winner = Gameboard.checkWinner();
             if (winner) {
                 scoreBoard.updateScore(winner);
-                gameState = 'win';
+                commentator(`${currentPlayer.name} Won!`);
+                gameState = 'not_playing';
             } else if (Gameboard.isBoardFull()) {
                 scoreBoard.updateScore('tie');
-                gameState = 'tie';
+                gameState = 'not_playing';
+                commentator(`It's a Tie!`);
             } else {
                 switchTurn();
+                commentator(`${currentPlayer.name}'s Turn`);
             }
         }
+    }
+
+    function commentator(message) {
+        const p = document.querySelector('#commentator');
+        p.textContent = `${message}`;
     }
 
     return {

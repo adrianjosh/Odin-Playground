@@ -11,7 +11,7 @@ body {
 .game-board {
     background-color: #26033d;
     width: 450px;
-    height: 600px;
+    height: 650px;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
@@ -82,6 +82,22 @@ body {
 
 .score-container > div > span:nth-child(2n){
     font-size: 2rem;
+}
+
+.commentator-container {
+    width: 65%;
+    height: 10%;
+    background-color: #3e1559;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#commentator {
+    color: white;
+    font-weight: 700;
 }
 
 .action {
