@@ -155,6 +155,7 @@ const GameController = (function() {
     });
 
     btnResetBoard.addEventListener('click', GameController.init);
+    btnResetScores.addEventListener('click', scoreBoard.resetScores);
 })();
 
 GameController.init();
