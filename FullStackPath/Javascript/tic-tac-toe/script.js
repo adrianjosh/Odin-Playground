@@ -56,6 +56,43 @@ const Participants = (function() {
     }
 })();
 
+const scoreBoard = (function() {
+    const playerOneElement = document.querySelector('#player-one-score');
+    const drawElement = document.querySelector('#draw-score');
+    const playerTwoElement = document.querySelector('#player-two-score');
+
+    let playerOneScore = 0;
+    let drawScore = 0;
+    let playerTwoScore = 0;
+
+    function updateScore(winner) {
+        if (winner === 'X') {
+            playerOneScore++;
+            playerOneElement.textContent = playerOneScore;
+        } else if (winner === 'O') {
+            playerTwoScore++;
+            playerTwoElement.textContent = playerTwoScore;
+        } else if (winner === 'tie') {
+            drawScore++;
+            drawElement.textContent = drawScore;
+        }
+    }
+
+    function resetScores() {
+        playerOneScore = 0;
+        drawScore = 0;
+        playerTwoScore = 0;
+        playerOneElement.textContent = playerOneScore;
+        drawElement.textContent = drawScore;
+        playerTwoElement.textContent = playerTwoScore;
+    }
+
+    return {
+        updateScore,
+        resetScores,
+    }
+})();
+
 const GameController = (function() {
     const board = Gameboard.getBoard();
     const participants = Participants.getParticipants();
@@ -79,11 +116,12 @@ const GameController = (function() {
             board[idx] = currentPlayer.marker;
             cell.textContent = currentPlayer.marker;
 
-            if (Gameboard.checkWinner()) {
-                console.log(`${currentPlayer.name} wins!`);
+            const winner = Gameboard.checkWinner();
+            if (winner) {
+                scoreBoard.updateScore(winner);
                 gameState = 'win';
             } else if (Gameboard.isBoardFull()) {
-                console.log(`It's a tie!`);
+                scoreBoard.updateScore('tie');
                 gameState = 'tie';
             } else {
                 switchTurn();

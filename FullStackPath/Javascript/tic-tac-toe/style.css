@@ -8,15 +8,17 @@ body {
 
 .game-board {
     background-color: #26033d;
-    width: 500px;
+    width: 450px;
     height: 600px;
     border-radius: 25px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
 }
+
 .buttons-container {
-    width: 60%;
+    width: 65%;
     height: 50%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -40,4 +42,42 @@ body {
 .buttons-container > div:hover {
     background-color: #2c0f3f;
     cursor: pointer;
+}
+
+.score-container {
+    width: 65%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-weight: bold;
+}
+.score-container > div {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+}
+
+.player-one {
+    background-color: #70cffc;
+}
+
+.draw {
+    background-color: #c5d9f6;
+}
+
+.player-two {
+    background-color: #e0bf43;
+}
+
+.score-container > div > span:nth-child(2n+1){
+    font-size: 0.8rem;
+}
+
+.score-container > div > span:nth-child(2n){
+    font-size: 2rem;
 }
