@@ -45,8 +45,8 @@ const Gameboard = (function() {
 
 const Participants = (function() {
     const participant = [
-        {name: 'Player', marker:'X'},
-        {name: 'Computer', marker:'O'},
+        {name: 'Player 1', marker:'X'},
+        {name: 'Player 2', marker:'O'},
     ];
 
     const getParticipants = () => participant;
