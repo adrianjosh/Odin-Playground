@@ -61,11 +61,16 @@ const GameController = (function() {
     const board = Gameboard.getBoard();
     const participants = Participants.getParticipants();
 
-    let currentPlayer = participants[0];
+    let currentPlayer;
 
     const switchTurn = () => {
         currentPlayer = currentPlayer === participants[0] ? participants[1] : participants[0];
     };
+
+    function init() {
+        Gameboard.resetBoard();
+        currentPlayer = participants[0];
+    }
 
     function currentTurn(idx) {
         console.log(`${currentPlayer.name}'s turn`);
@@ -91,5 +96,6 @@ const GameController = (function() {
 
     return {
         currentTurn,
+        init,
     }
 })();
