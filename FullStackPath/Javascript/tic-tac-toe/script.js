@@ -8,9 +8,14 @@ const Gameboard = (function() {
     const getBoard = () => board;
 
     function resetBoard() {
+        const cells = document.querySelectorAll('.buttons-container div');
+
         for (let i = 0; i < board.length; i++) {
             board[i] = '';
         }
+        cells.forEach(cell => {
+            cell.textContent = '';
+        });
     }
 
     function checkWinner() {
@@ -135,10 +140,12 @@ const GameController = (function() {
     }
 })();
 
-(function(){
-    const buttonsContainer = document.querySelector('.buttons-container');
+(function Actions(){
+    const btnsContainer = document.querySelector('.buttons-container');
+    const btnResetBoard = document.querySelector('#reset-board');
+    const btnResetScores = document.querySelector('#reset-scores');
 
-    buttonsContainer.addEventListener('click', function(event) {
+    btnsContainer.addEventListener('click', function(event) {
         const cell = event.target;
         const idx = cell.getAttribute('data-index');
 
@@ -146,6 +153,8 @@ const GameController = (function() {
             GameController.currentTurn(idx, cell);
         }
     });
+
+    btnResetBoard.addEventListener('click', GameController.init);
 })();
 
 GameController.init();
