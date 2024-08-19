@@ -56,41 +56,38 @@ const Participants = (function() {
     }
 })();
 
-
 const GameController = (function() {
     const board = Gameboard.getBoard();
     const participants = Participants.getParticipants();
 
     let currentPlayer;
-
-    const switchTurn = () => {
-        currentPlayer = currentPlayer === participants[0] ? participants[1] : participants[0];
-    };
+    let gameState;
 
     function init() {
         Gameboard.resetBoard();
         currentPlayer = participants[0];
+        gameState = 'playing';
     }
 
-    function currentTurn(idx) {
-        console.log(`${currentPlayer.name}'s turn`);
+    const switchTurn = () => {
+        currentPlayer = currentPlayer === participants[0] ? participants[1] : participants[0];
+    };
+    
+    function currentTurn(idx, cell) {
 
-        if (board[idx] !== currentPlayer.marker) {
+        if (board[idx] === '' && gameState === 'playing') {
             board[idx] = currentPlayer.marker;
+            cell.textContent = currentPlayer.marker;
 
-            const winner = Gameboard.checkWinner();
-            const draw = Gameboard.isBoardFull();
-
-            if (winner) {
+            if (Gameboard.checkWinner()) {
                 console.log(`${currentPlayer.name} wins!`);
-            } else if (draw) {
+                gameState = 'win';
+            } else if (Gameboard.isBoardFull()) {
                 console.log(`It's a tie!`);
+                gameState = 'tie';
             } else {
                 switchTurn();
             }
-        }
-        else {
-            console.log('Tanga meron na dyan');
         }
     }
 
@@ -99,3 +96,18 @@ const GameController = (function() {
         init,
     }
 })();
+
+(function(){
+    const buttonsContainer = document.querySelector('.buttons-container');
+
+    buttonsContainer.addEventListener('click', function(event) {
+        const cell = event.target;
+        const idx = cell.getAttribute('data-index');
+
+        if (idx !== null) {
+            GameController.currentTurn(idx, cell);
+        }
+    });
+})();
+
+GameController.init();
