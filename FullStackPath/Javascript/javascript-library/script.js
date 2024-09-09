@@ -1,5 +1,3 @@
-const myLibrary = [];
-const libraryTableBody = document.querySelector('table tbody');
 const bookForm = document.getElementById('book-form');
 
 class Book {
@@ -20,9 +18,76 @@ class Book {
     }
 }
 
-function addBookToLibrary(title, author, pages, readStatus) {
-    const book = new Book(title, author, pages, readStatus);
-    myLibrary.push(book);
+class Library {
+    constructor() {
+        this.myLibrary = [];
+        this.libraryTableBody = document.querySelector('table tbody');
+    }
+
+    addBookToLibrary(title, author, pages, readStatus) {
+        const book = new Book(title, author, pages, readStatus);
+        this.myLibrary.push(book);
+    }
+
+    findBookIndexById(id) {
+        return this.myLibrary.findIndex(book => book.id === id);
+    }
+
+    deleteBookById(id) {
+        const index = this.findBookIndexById(id);
+        if (index !== -1) {
+            this.myLibrary.splice(index, 1);
+            console.log(`Book with ID ${id} deleted.`);
+        } else {
+            console.log(`Book with ID ${id} not found.`);
+        }
+    }
+
+    displayBooksToTable() {
+        this.libraryTableBody.innerHTML = '';
+        this.myLibrary.forEach(book => {
+            const tr = document.createElement('tr');
+    
+            const title = document.createElement('td');
+            const author = document.createElement('td');
+            const pages = document.createElement('td');
+            const deleteCell = document.createElement('td');
+            const statusCell = document.createElement('td');
+
+            title.textContent = book.title;
+            author.textContent = book.author;
+            pages.textContent = book.pages;
+
+            const statusBtn = document.createElement('button');
+            statusBtn.textContent = book.readStatus;
+            statusBtn.classList.add('status-btn', book.readStatus === 'Read' ? 'read' : 'not-read');
+            statusBtn.addEventListener('click', ()=> {
+                book.toggleReadStatus();
+                this.displayBooksToTable();
+            });
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.classList.add('delete-btn');
+            deleteBtn.addEventListener('click', ()=> {
+                this.deleteBookById(book.id);
+                this.displayBooksToTable();
+            });
+
+            tr.appendChild(title);
+            tr.appendChild(author);
+            tr.appendChild(pages);
+    
+            statusCell.appendChild(statusBtn);
+            deleteCell.appendChild(deleteBtn);
+            tr.appendChild(statusCell);
+            tr.appendChild(deleteCell);
+            
+            this.libraryTableBody.appendChild(tr);
+        });
+        
+    }
+    
 }
 
 bookForm.addEventListener('submit', function(event) {
@@ -46,67 +111,3 @@ function clearForm() {
     document.getElementById('pages').value = '';
     document.getElementById('readStatus').value = 'Not Read';
 }
-
-function displayBooksToTable() {
-    libraryTableBody.innerHTML = '';
-    myLibrary.forEach(book => {
-        let tr = document.createElement('tr');
-
-        let title = document.createElement('td');
-        let author = document.createElement('td');
-        let pages = document.createElement('td');
-        let deleteCell = document.createElement('td');
-        let statusCell = document.createElement('td');
-        let deleteBtn = document.createElement('button');
-        let statusBtn = document.createElement('button');
-
-        title.textContent = book.title;
-        author.textContent = book.author;
-        pages.textContent = book.pages;
-
-        deleteBtn.textContent = 'Delete';
-        deleteBtn.classList.add('delete-btn');
-        deleteBtn.setAttribute('data-id', book.id);
-        deleteBtn.addEventListener('click', function() {
-            deleteBookById(book.id);
-            displayBooksToTable();
-        });
-
-        statusBtn.textContent = book.readStatus;
-        statusBtn.classList.add('status-btn', book.readStatus === 'Read' ? 'read' : 'not-read');
-        statusBtn.addEventListener('click', function() {
-            book.toggleReadStatus();
-            displayBooksToTable();
-        });
-        
-        tr.appendChild(title);
-        tr.appendChild(author);
-        tr.appendChild(pages);
-
-        statusCell.appendChild(statusBtn);
-        deleteCell.appendChild(deleteBtn);
-        tr.appendChild(statusCell);
-        tr.appendChild(deleteCell);
-        
-        libraryTableBody.appendChild(tr);
-    });
-    
-}
-
-function findBookIndexById(id) {
-    return myLibrary.findIndex(book => book.id === id);
-}
-
-function deleteBookById(id) {
-    const index = findBookIndexById(id);
-    if (index !== -1) {
-        myLibrary.splice(index, 1);
-        console.log(`Book with ID ${id} deleted.`);
-    } else {
-        console.log(`Book with ID ${id} not found.`);
-    }
-}
-
-
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 310, 'Not Read');
-displayBooksToTable();
