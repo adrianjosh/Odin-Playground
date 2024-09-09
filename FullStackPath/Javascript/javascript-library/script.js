@@ -2,6 +2,10 @@ const myLibrary = [];
 const libraryTableBody = document.querySelector('table tbody');
 const bookForm = document.getElementById('book-form');
 
+class newBook {
+
+}
+
 function Book(title, author, pages, readStatus) {
     this.title = title;
     this.author = author;
