@@ -1,5 +1,3 @@
-const bookForm = document.getElementById('book-form');
-
 class Book {
     constructor(title, author, pages, readStatus) {
         this.title = title;
@@ -85,29 +83,43 @@ class Library {
             
             this.libraryTableBody.appendChild(tr);
         });
-        
     }
+}
+
+class FormDetailsToBook {
+    constructor(_library) {
+        this.library = _library;
+        this.bookForm = document.getElementById('book-form');
+        this.bookForm.addEventListener('submit',this.handleFormSubmit.bind(this));
+    }
+
+    handleFormSubmit(event) {
+        event.preventDefault();
     
-}
-
-bookForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const title = document.getElementById('title').value.trim();
-    const author = document.getElementById('author').value.trim();
-    const pages = document.getElementById('pages').value.trim();
-    const readStatus = document.getElementById('readStatus').value;
-
-    if (title && author && pages) {
-        addBookToLibrary(title, author, pages, readStatus);
-        clearForm();
-        displayBooksToTable();
+        const title = document.getElementById('title').value.trim();
+        const author = document.getElementById('author').value.trim();
+        const pages = document.getElementById('pages').value.trim();
+        const readStatus = document.getElementById('readStatus').value;
+    
+        if (title && author && pages) {
+            this.library.addBookToLibrary(title, author, pages, readStatus);
+            this.clearForm();
+            this.library.displayBooksToTable();
+        }
     }
-});
 
-function clearForm() {
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
-    document.getElementById('pages').value = '';
-    document.getElementById('readStatus').value = 'Not Read';
+    clearForm() {
+        document.getElementById('title').value = '';
+        document.getElementById('author').value = '';
+        document.getElementById('pages').value = '';
+        document.getElementById('readStatus').value = 'Not Read';
+    }
 }
+
+const library = new Library();
+const bookForm = new FormDetailsToBook(library);
+
+window.addEventListener("DOMContentLoaded", function() {
+    library.addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 310, 'Not Read');
+    library.displayBooksToTable();
+}, false);
