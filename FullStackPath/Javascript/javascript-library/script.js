@@ -109,9 +109,7 @@ class FormDetailsToBook {
     }
 
     clearForm() {
-        document.getElementById('title').value = '';
-        document.getElementById('author').value = '';
-        document.getElementById('pages').value = '';
+        this.bookForm.reset();
         document.getElementById('readStatus').value = 'Not Read';
     }
 }
