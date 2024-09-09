@@ -2,25 +2,28 @@ const myLibrary = [];
 const libraryTableBody = document.querySelector('table tbody');
 const bookForm = document.getElementById('book-form');
 
-class newBook {
+class Book {
+    constructor(title, author, pages, readStatus) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.readStatus = readStatus;
+        this.id = this.generateUniqueId();
+    }
 
+    generateUniqueId() {
+        return '_' + Math.random().toString(36).substring(2, 9);
+    }
+
+    toggleReadStatus() {
+        this.readStatus = this.readStatus === 'Read' ? 'Not Read' : 'Read';
+    }
 }
 
-function Book(title, author, pages, readStatus) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.readStatus = readStatus;
-    this.id = this.generateUniqueId();
+function addBookToLibrary(title, author, pages, readStatus) {
+    const book = new Book(title, author, pages, readStatus);
+    myLibrary.push(book);
 }
-
-Book.prototype.generateUniqueId = function() {
-    return '_' + Math.random().toString(36).substring(2, 9);
-};
-
-Book.prototype.toggleReadStatus = function() {
-    this.readStatus = this.readStatus === "Read" ? "Not Read" : "Read";
-};
 
 bookForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -42,11 +45,6 @@ function clearForm() {
     document.getElementById('author').value = '';
     document.getElementById('pages').value = '';
     document.getElementById('readStatus').value = 'Not Read';
-}
-
-function addBookToLibrary(title, author, pages, readStatus) {
-    const book = new Book(title, author, pages, readStatus);
-    myLibrary.push(book);
 }
 
 function displayBooksToTable() {
